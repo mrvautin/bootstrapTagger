@@ -39,6 +39,9 @@
 		// add the input box class
 		$(input_box).addClass("bootstraptagger_input_box");
 		
+		// setup the width
+		$('.bootstraptagger_input_box').width(calc_input_width());
+		
 		// remove bootstrap classes if needed
 		$(input_box).removeClass("form-control");
 
@@ -57,6 +60,25 @@
 			$(input_box).val("");
 		}
 		
+		$(input_box).keydown(function(event) {
+			// detect backspace and remove last tag
+			if(event.which == 8 || event.which == 46){
+				if($(input_box).val() == ""){
+					// get tag text
+					var tag_string = $(".bootstraptagger_word").last().text();
+					
+					// remove the item from the array
+					input_tags.splice(input_tags.indexOf(tag_string), 1);
+					
+					// remove the actual tag element
+					$(".bootstraptagger_word").last().remove();
+					
+					// update the hidden element val()
+					update_hidden_val(hidden_input, input_tags);
+				}
+			}
+		});
+		
 		$(input_box).keyup(function(event) {
 			// if comma pressed then we get the last split word and add to tags
 			if(event.which == 188){
@@ -71,7 +93,7 @@
 				// clear the input box
 				$(input_box).val("");
 			}
-		});	
+		});		
 
 		$(document).on('click', ".bootstraptagger_remove" , function() {
 			// get tag text
@@ -94,6 +116,10 @@
 			// push the new tag to the tag array
 			input_tags.push(tag);
 			
+			// resize the input box to be as big as possible
+			$('.bootstraptagger_input_box').outerWidth(calc_input_width());
+			
+			
 			// update the hidden element with the new tag
 			update_hidden_val(hidden_input, input_tags);
 		}
@@ -110,6 +136,21 @@
 			}else{
 				return settings.backgroundColor;
 			}
+		}
+		
+		function calc_input_width(){
+			// full width of wrapper
+			var full_width = $('.bootstraptagger_wrapper').innerWidth();
+			
+			// add up all the word tags
+			var word_width = 0;		
+			$('.bootstraptagger_word').each(function() {
+				word_width = word_width + $(this).outerWidth() + 10;
+			});
+
+			// return the full width minus the width of the words
+			var net_width = full_width - word_width;
+			return net_width - 10;
 		}
     };
 }(jQuery));

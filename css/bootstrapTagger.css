@@ -1,4 +1,3 @@
-
 .bootstraptagger_wrapper{
 	width: 100%;
 	background-color: #fff;
@@ -25,7 +24,6 @@ input.form-control,input.form-control:focus {
 }
 
 .bootstraptagger_input_box{
-	width: 4.5em !important;
     border: none;
     box-shadow: none;
     outline: none;

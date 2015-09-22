@@ -40,7 +40,7 @@
 		$(input_box).addClass("bootstraptagger_input_box");
 		
 		// setup the width
-		$('.bootstraptagger_input_box').width(calc_input_width());
+		$(input_box).outerWidth(calc_input_width(input_box));
 		
 		// remove bootstrap classes if needed
 		$(input_box).removeClass("form-control");
@@ -117,7 +117,7 @@
 			input_tags.push(tag);
 			
 			// resize the input box to be as big as possible
-			$('.bootstraptagger_input_box').outerWidth(calc_input_width());
+			$(input_box).outerWidth(calc_input_width(input_box));
 			
 			
 			// update the hidden element with the new tag
@@ -138,18 +138,19 @@
 			}
 		}
 		
-		function calc_input_width(){
+		function calc_input_width(input_box){
 			// full width of wrapper
-			var full_width = $('.bootstraptagger_wrapper').innerWidth();
+			var full_width = $(input_box).parent().innerWidth();
 			
 			// add up all the word tags
-			var word_width = 0;		
-			$('.bootstraptagger_word').each(function() {
+			var word_width = 0;	
+			$(input_box).parent().children('span').each(function() {
 				word_width = word_width + $(this).outerWidth() + 10;
 			});
 
 			// return the full width minus the width of the words
 			var net_width = full_width - word_width;
+
 			return net_width - 10;
 		}
     };

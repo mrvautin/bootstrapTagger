@@ -65,13 +65,13 @@
 			if(event.which == 8 || event.which == 46){
 				if($(input_box).val() == ""){
 					// get tag text
-					var tag_string = $(".bootstraptagger_word").last().text();
+					var tag_string = $(input_box).parent().children('span').last().text();
 					
 					// remove the item from the array
 					input_tags.splice(input_tags.indexOf(tag_string), 1);
 					
 					// remove the actual tag element
-					$(".bootstraptagger_word").last().remove();
+					$(input_box).parent().children('span').last().remove();
 					
 					// update the hidden element val()
 					update_hidden_val(hidden_input, input_tags);

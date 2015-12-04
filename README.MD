@@ -1,10 +1,10 @@
 ## What is it?
 
-bootstrapTagger is a jQuery plugin for converting a simple HTML input element into a tag editing control for use with blogs and various other web based software.
+bootstrapTagger is a jQuery plugin for simply turning an input element into a Bootstrap styled tag editing control for use with blogs and various other web based software.
 
 ## What does it look like?
 
-Here is a live Demo: [http://mrvautin.github.io/](http://mrvautin.github.io/)
+Here is a live Demo: [http://mrvautin.github.io/bootstrapTagger.html](http://mrvautin.github.io/bootstrapTagger.html)
 
 *Note: Tags are comma seporated. Once a comma is pressed a new tag is created*
 
